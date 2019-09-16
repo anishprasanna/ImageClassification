@@ -40,8 +40,8 @@ def main():
 
 
 
-    
-def randomizer(arr, n):                 #fisher yates algorithm
+#fisher yates algorithm
+def randomizer(arr, n):                 
     for i in range(n-1, 0, -1):
         j = random.randint(0, i+1)
         arr[i], arr[j] = arr[j], arr[i]
