@@ -30,7 +30,7 @@ def main():
 
     #create a folder for every 20 images we have in the list.
 
-    folding(cd_list, 5)
+    # folding(cd_list, 5)
     # list(im.getdata()) without numpy
     
 def randomizer(arr, n):                 #fisher yates algorithm
@@ -51,38 +51,34 @@ def folding(cd_list, num):
         output.append(cd_list[int(last):int(last + avg)])
         last += avg
 
-    # i = 0
-    # for fold in output:
-    #     j = 0
-    #     for photo in fold[i]:
-    #         print(fold)
-    #         j += 1
-    #         #shutil.move(photo[i][j], '/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_' + str(i) + '/')
-        # i += 1
-    # print(len(output))
-    # i = 0
+    # print(output)
     i = 0
     for l1sts in output:
         for photo in l1sts:
-            print(photo[1])
-            print(len(photo[1]))
-            # if i in range(0,20):
-            #     print('fold1')
-            #     print(photo[1])
-            #     # shutil.move(photo, '/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_1')
-            # elif i in range(20,40):
-            #     print('fold2')
-            #     print(photo[1])
-            # elif i in range(40, 60):
-            #     print('fold3')
-            #     print(photo[i])
-            # elif i in range(60, 80):
-            #     print('fold4')
-            #     print(photo[i])
-            # elif i in range(80, 100):
-            #     print('fold5')
-            #     print(photo[i])
-            # i += 1
+            # print(photo[1])
+            # print(len(photo[1]))
+            if i in range(0,20):
+                # print('fold1')
+                # print(photo[1])
+                shutil.move(photo[1], '/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_1')
+            
+            if i in range(20,40):
+                # print('fold2')
+                shutil.move(photo[1], '/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_2')
+
+            if i in range(40, 60):
+                shutil.move(photo[1], '/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_3')
+            
+            if i in range(60, 80):
+                # print('fold4')
+                # print(photo[1])
+                shutil.move(photo[1], '/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_4')
+            
+            if i in range(80, 100):
+                # print('fold5')
+                # print(photo[1])
+                shutil.move(photo[1], '/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_5')
+            i += 1
             
 
         # for subl1sts in l1sts:
