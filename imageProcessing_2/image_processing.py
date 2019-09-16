@@ -55,7 +55,7 @@ def folding(cd_list, num):
         for i in twenty:
             shutil.move(i, '/Users/Carlos/Projects/Data_Mining/imageProcessing_2/fold_' + str(i) + '/')
 
-        #output.append(cd_list[int(last):int(last + avg)])
+        output.append(cd_list[int(last):int(last + avg)])
         # print(len(output))
         # dest = os.mkdir('/Users/Carlos/Projects/Data_Mining/imageProcessing_2/photos/fold_' + str(i) + '/')
         # for image in output:
