@@ -9,6 +9,7 @@ def main():
     dog_photos = glob.glob('/Users/Carlos/Projects/Dogs_vs_Cats/photos/dogs' + '/*.jpg')
     
     #sort photos
+    
     cat_photos.sort()
     dog_photos.sort()
     # print(cat_photos)
