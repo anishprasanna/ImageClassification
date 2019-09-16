@@ -33,15 +33,11 @@ def main():
 
     folding(cd_list, 5)
 
-    im = Image.open('images/dot.jpg’)
+    im = Image.open('images/dot.jpg')
     iar = np.asarray(im)
     # list(im.getdata()) without numpy
-
-
-
-
-#fisher yates algorithm
-def randomizer(arr, n):                 
+    
+def randomizer(arr, n):                 #fisher yates algorithm
     for i in range(n-1, 0, -1):
         j = random.randint(0, i+1)
         arr[i], arr[j] = arr[j], arr[i]
