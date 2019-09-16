@@ -9,7 +9,6 @@ def main():
     dog_photos = glob.glob('/Users/Carlos/Projects/Dogs_vs_Cats/photos/dogs' + '/*.jpg')
     
     #sort photos
-    
     cat_photos.sort()
     dog_photos.sort()
     # print(cat_photos)
@@ -29,8 +28,9 @@ def main():
     # print(cd_list)
 
     #create a folder for every 20 images we have in the list.
-
     # folding(cd_list, 5)
+    folding(cd_list, 5)
+
     # list(im.getdata()) without numpy
     
 def randomizer(arr, n):                 #fisher yates algorithm
