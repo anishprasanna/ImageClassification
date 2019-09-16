@@ -18,9 +18,11 @@ def main():
 
     #created a dictionary with index as value
     indexed_cd = dict(zip(cats_and_dogs,range(len(cats_and_dogs))))
-
+    # print(indexed_cd)
+    
     #create a list of dictionary items
     cd_list = list(indexed_cd.items())
+    # print(cd_list)
     
     randomizer(cd_list, len(indexed_cd))
     # print(cd_list)
@@ -42,22 +44,29 @@ def folding(cd_list, num):
     avg = len(cd_list) / float(num)
     output = []
     last = 0.0
+    # print(num)
+    
+    # for i in range(1,num+1):
+    #     os.mkdir('/Users/Carlos/Projects/Data_Mining/imageProcessing_2/fold_' + str(i) + '/')
 
     # i = 1
     while last < len(cd_list):
-        output.append(cd_list[int(last):int(last + avg)])
+        twenty = cd_list[int(last):int(last + avg)]
+        for i in twenty:
+            shutil.move(i, '/Users/Carlos/Projects/Data_Mining/imageProcessing_2/fold_' + str(i) + '/')
+
+        #output.append(cd_list[int(last):int(last + avg)])
         # print(len(output))
         # dest = os.mkdir('/Users/Carlos/Projects/Data_Mining/imageProcessing_2/photos/fold_' + str(i) + '/')
         # for image in output:
         #     shutil.move(image, dest)
         last += avg
         # i += 1
-    
-    print(len(output))
-    i = 0
 
-    # for fold in range(1, output+1):
-    #     fold_+i= list(fold_+str(i)).append
+    
+    # for fold in output:
+    #     print(fold)
+        # fold_+i= list(fold_+str(i)).append
 
     # for image in output:
     #     shutil.move(image, dest)
