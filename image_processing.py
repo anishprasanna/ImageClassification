@@ -2,6 +2,8 @@ import glob
 import random
 import os
 import shutil
+from PIL import Image
+import numpy as np
 
 def main():
     #collect list of file paths from cats and dogs
@@ -30,6 +32,11 @@ def main():
     #create a folder for every 20 images we have in the list.
 
     folding(cd_list, 5)
+
+    im = Image.open('images/dot.jpg’)
+    iar = np.asarray(im)
+    # list(im.getdata()) without numpy
+
 
 
 
