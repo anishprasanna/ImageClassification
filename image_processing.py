@@ -11,27 +11,21 @@ def main():
     #sort photos
     cat_photos.sort()
     dog_photos.sort()
-    # print(cat_photos)
 
     # one big list
     cats_and_dogs = cat_photos + dog_photos
 
     #created a dictionary with index as value
     indexed_cd = dict(zip(range(len(cats_and_dogs)), cats_and_dogs))
-    # print(indexed_cd)
     
     #create a list of dictionary items
     cd_list = list(indexed_cd.items())
-    # print(cd_list)
     
     randomizer(cd_list, len(indexed_cd))
-    # print(cd_list)
 
     #create a folder for every 20 images we have in the list.
-    # folding(cd_list, 5)
     folding(cd_list, 5)
 
-    # list(im.getdata()) without numpy
     
 def randomizer(arr, n):                 #fisher yates algorithm
     for i in range(n-1, 0, -1):
@@ -51,50 +45,24 @@ def folding(cd_list, num):
         output.append(cd_list[int(last):int(last + avg)])
         last += avg
 
-    # print(output)
     i = 0
     for l1sts in output:
         for photo in l1sts:
-            # print(photo[1])
-            # print(len(photo[1]))
             if i in range(0,20):
-                # print('fold1')
-                # print(photo[1])
                 shutil.move(photo[1], '/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_1')
             
             if i in range(20,40):
-                # print('fold2')
                 shutil.move(photo[1], '/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_2')
 
             if i in range(40, 60):
                 shutil.move(photo[1], '/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_3')
             
             if i in range(60, 80):
-                # print('fold4')
-                # print(photo[1])
                 shutil.move(photo[1], '/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_4')
             
             if i in range(80, 100):
-                # print('fold5')
-                # print(photo[1])
                 shutil.move(photo[1], '/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_5')
             i += 1
-            
-
-        # for subl1sts in l1sts:
-        #     print(subl1sts[l1sts][1])
-
-    # for k,v in output:
-    #     if k < 21:
-    #         shutil.move(v,'/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_1')
-    #     elif k < 41:
-    #         shutil.move(v,'/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_2')
-    #     elif k < 61:
-    #         shutil.move(v,'/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_3')
-    #     elif k < 81:
-    #         shutil.move(v,'/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_4')
-    #     elif k < 101:
-    #         shutil.move(v,'/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_5')
 
     return output
 if __name__ == '__main__':
