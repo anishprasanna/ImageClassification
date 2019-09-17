@@ -26,7 +26,7 @@ def main():
     #create a folder for every 20 images we have in the list.
     folding(cd_list, 5)
 
-    x_validation(fold_1, fold_2, fold_3, fold_4, fold_5)
+    x_validation(output, fold_1, fold_2, fold_3, fold_4, fold_5)
 
     
 def randomizer(arr, n):                 #fisher yates algorithm
@@ -40,8 +40,11 @@ def folding(cd_list, num):
     output = []
     last = 0.0
     
-    for i in range(1, num + 1):
-        os.mkdir('/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_' + str(i) + '/')
+    # for i in range(1, num + 1):
+    #     os.mkdir('/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_' + str(i) + '/')
+
+    global output
+    output = []
 
     while last < len(cd_list):
         output.append(cd_list[int(last):int(last + avg)])
@@ -88,10 +91,34 @@ def folding(cd_list, num):
 
     return output, fold_1, fold_2, fold_3, fold_4, fold_5
 
-def x_validation(fold_1, fold_2, fold_3, fold_4, fold_5):
+def x_validation(output, fold_1, fold_2, fold_3, fold_4, fold_5):
     print(fold_1)
-    print(fold_2)
+    # print(output)
+    # all_folds = fold_1 + fold_2 + fold_3 + fold_4 + fold_5
+    # print(len(output))
+    # print(output[0][1])
+    # while i < output:
+    # count = 0
+    # i = 0
+    # while count < len(output):
+    #     output[i][1]
+    #     i += 1
 
+    # for l1st in output:
+    #     print(l1st)
+    #     for photo in l1st: 
+    #         # print(photo[1])
+    #         print('hi')
+
+
+
+
+
+    # for i in output:
+    #     print()
+    # for fold in all_folds:
+    #     for photo in fold:
+    #         print(photo[1])
 
 if __name__ == '__main__':
     main()
