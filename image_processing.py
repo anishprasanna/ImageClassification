@@ -40,8 +40,8 @@ def folding(cd_list, num):
     output = []
     last = 0.0
     
-    # for i in range(1, num + 1):
-    #     os.mkdir('/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_' + str(i) + '/')
+    for i in range(1, num + 1):
+        os.mkdir('/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_' + str(i) + '/')
 
     while last < len(cd_list):
         output.append(cd_list[int(last):int(last + avg)])
@@ -67,29 +67,31 @@ def folding(cd_list, num):
         for photo in l1sts:
             if i in range(0,20):
                 fold_1.append(photo)
-                shutil.move(photo[1], '/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_1')
+                shutil.copy(photo[1], '/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_1')
             
             if i in range(20,40):
                 fold_2.append(photo)
-                shutil.move(photo[1], '/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_2')
+                shutil.copy(photo[1], '/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_2')
 
             if i in range(40, 60):
                 fold_3.append(photo)
-                shutil.move(photo[1], '/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_3')
+                shutil.copy(photo[1], '/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_3')
             
             if i in range(60, 80):
                 fold_4.append(photo)
-                shutil.move(photo[1], '/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_4')
+                shutil.copy(photo[1], '/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_4')
             
             if i in range(80, 100):
                 fold_5.append(photo)
-                shutil.move(photo[1], '/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_5')
+                shutil.copy(photo[1], '/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_5')
             i += 1
 
     return output, fold_1, fold_2, fold_3, fold_4, fold_5
 
 def x_validation(fold_1, fold_2, fold_3, fold_4, fold_5):
     print(fold_1)
+    print(fold_2)
+
 
 if __name__ == '__main__':
     main()
