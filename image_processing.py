@@ -40,8 +40,8 @@ def folding(cd_list, num):
     output = []
     last = 0.0
     
-    # for i in range(1, num + 1):
-    #     os.mkdir('/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_' + str(i) + '/')
+    for i in range(1, num + 1):
+        os.mkdir('/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_' + str(i) + '/')
 
     global output
     output = []
@@ -69,56 +69,80 @@ def folding(cd_list, num):
     for l1sts in output:
         for photo in l1sts:
             if i in range(0,20):
-                fold_1.append(photo)
+                fold_1.append(photo[1])             #I DON'T KNOW IF WE SHOULD DO THIS!!! Just add photo not index
                 shutil.copy(photo[1], '/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_1')
             
             if i in range(20,40):
-                fold_2.append(photo)
+                fold_2.append(photo[1])
                 shutil.copy(photo[1], '/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_2')
 
             if i in range(40, 60):
-                fold_3.append(photo)
+                fold_3.append(photo[1])
                 shutil.copy(photo[1], '/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_3')
             
             if i in range(60, 80):
-                fold_4.append(photo)
+                fold_4.append(photo[1])
                 shutil.copy(photo[1], '/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_4')
             
             if i in range(80, 100):
-                fold_5.append(photo)
+                fold_5.append(photo[1])
                 shutil.copy(photo[1], '/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_5')
             i += 1
 
     return output, fold_1, fold_2, fold_3, fold_4, fold_5
 
 def x_validation(output, fold_1, fold_2, fold_3, fold_4, fold_5):
-    print(fold_1)
-    # print(output)
-    # all_folds = fold_1 + fold_2 + fold_3 + fold_4 + fold_5
-    # print(len(output))
-    # print(output[0][1])
-    # while i < output:
-    # count = 0
-    # i = 0
-    # while count < len(output):
-    #     output[i][1]
-    #     i += 1
+    fold_1.sort()
+    fold_2.sort()
+    fold_3.sort()
+    fold_4.sort()
+    fold_5.sort()
 
-    # for l1st in output:
-    #     print(l1st)
-    #     for photo in l1st: 
-    #         # print(photo[1])
-    #         print('hi')
+    avg = len(output) / float(num)
+    output = []
+    last = 0.0
 
+    new_output = []
+    while last < len(output):
+        new_output.append(cd_list[int(last):int(last + avg)])
+        last += avg
+    print(new_output)
 
+    allFolds = fold_1 + fold_2 + fold_3 + fold_4 + fold_5
 
+    training_set_1 = []
+    validation_set_1 = fold_1
+    for fold in output:
+        if fold != validation_set_1:
+            training_set_1.append(fold)
 
+    training_set_2 = []
+    validation_set_2 = fold_2
+    for fold in output:
+        if fold != validation_set_2:
+            training_set_2.append(fold)
 
-    # for i in output:
-    #     print()
-    # for fold in all_folds:
-    #     for photo in fold:
-    #         print(photo[1])
+    training_set_3 = []
+    validation_set_3 = fold_3
+    for fold in output:
+        if fold != validation_set_3:
+            training_set_3.append(fold)
+    
+    training_set_4 = []
+    validation_set_4 = fold_4
+    for fold in output:
+        if fold != validation_set_4:
+            training_set_4.append(fold)
+    
+    training_set_5 = []
+    validation_set_5 = fold_5
+    for fold in output:
+        if fold != validation_set_5:
+            training_set_5.append(fold)
+
+    print('validation and test sets 1')
+    print(validation_set_1)
+    print(training_set_1)
 
 if __name__ == '__main__':
     main()
