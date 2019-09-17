@@ -98,51 +98,57 @@ def x_validation(output, fold_1, fold_2, fold_3, fold_4, fold_5):
     fold_4.sort()
     fold_5.sort()
 
-    avg = len(output) / float(num)
-    output = []
-    last = 0.0
-
+    allFolds = fold_1 + fold_2 + fold_3 + fold_4 + fold_5
     new_output = []
-    while last < len(output):
-        new_output.append(cd_list[int(last):int(last + avg)])
-        last += avg
+    for fold in allFolds:
+        new_output.append([fold])
+
+
+    # i = 0
+    # last = 0.0
+    # new_output = []
+
+    # while i < len(allFolds):
+    #     new_output.append(allFolds[i])
+    #     i += 1
+
     print(new_output)
 
-    allFolds = fold_1 + fold_2 + fold_3 + fold_4 + fold_5
+    # allFolds = fold_1 + fold_2 + fold_3 + fold_4 + fold_5
 
-    training_set_1 = []
-    validation_set_1 = fold_1
-    for fold in output:
-        if fold != validation_set_1:
-            training_set_1.append(fold)
+    # training_set_1 = []
+    # validation_set_1 = fold_1
+    # for fold in output:
+    #     if fold != validation_set_1:
+    #         training_set_1.append(fold)
 
-    training_set_2 = []
-    validation_set_2 = fold_2
-    for fold in output:
-        if fold != validation_set_2:
-            training_set_2.append(fold)
+    # training_set_2 = []
+    # validation_set_2 = fold_2
+    # for fold in output:
+    #     if fold != validation_set_2:
+    #         training_set_2.append(fold)
 
-    training_set_3 = []
-    validation_set_3 = fold_3
-    for fold in output:
-        if fold != validation_set_3:
-            training_set_3.append(fold)
+    # training_set_3 = []
+    # validation_set_3 = fold_3
+    # for fold in output:
+    #     if fold != validation_set_3:
+    #         training_set_3.append(fold)
     
-    training_set_4 = []
-    validation_set_4 = fold_4
-    for fold in output:
-        if fold != validation_set_4:
-            training_set_4.append(fold)
+    # training_set_4 = []
+    # validation_set_4 = fold_4
+    # for fold in output:
+    #     if fold != validation_set_4:
+    #         training_set_4.append(fold)
     
-    training_set_5 = []
-    validation_set_5 = fold_5
-    for fold in output:
-        if fold != validation_set_5:
-            training_set_5.append(fold)
+    # training_set_5 = []
+    # validation_set_5 = fold_5
+    # for fold in output:
+    #     if fold != validation_set_5:
+    #         training_set_5.append(fold)
 
-    print('validation and test sets 1')
-    print(validation_set_1)
-    print(training_set_1)
+    # print('validation and test sets 1')
+    # print(validation_set_1)
+    # print(training_set_1)
 
 if __name__ == '__main__':
     main()
