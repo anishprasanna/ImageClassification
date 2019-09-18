@@ -18,10 +18,6 @@ def main():
     dog_photos = glob.glob('/Users/Carlos/Projects/Dogs_vs_Cats/photos/dogs' + '/*.jpg')
     
     #sort photos
-<<<<<<< HEAD
-
-=======
->>>>>>> 60febc4df47ac6ddb85b516320212fef68f3bb1d
     cat_photos.sort()
     dog_photos.sort()
 
