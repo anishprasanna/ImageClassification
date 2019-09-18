@@ -3,6 +3,15 @@ import random
 import os
 import shutil
 
+global output_1, output_2, fold_1, fold_2, fold_3, fold_4, fold_5
+output_1 = []
+output_2 = []
+fold_1 = []
+fold_2 = []
+fold_3 = []
+fold_4 = []
+fold_5 = []
+
 def main():
     #collect list of file paths from cats and dogs
     cat_photos = glob.glob('/Users/Carlos/Projects/Dogs_vs_Cats/photos/cats' + '/*.jpg')
@@ -11,25 +20,23 @@ def main():
     #sort photos
     cat_photos.sort()
     dog_photos.sort()
-    # print(cat_photos)
 
     # one big list
     cats_and_dogs = cat_photos + dog_photos
 
     #created a dictionary with index as value
     indexed_cd = dict(zip(range(len(cats_and_dogs)), cats_and_dogs))
-    # print(indexed_cd)
     
     #create a list of dictionary items
     cd_list = list(indexed_cd.items())
-    # print(cd_list)
     
     randomizer(cd_list, len(indexed_cd))
-    # print(cd_list)
 
     #create a folder for every 20 images we have in the list.
     folding(cd_list, 5)
-    # list(im.getdata()) without numpy
+
+    x_validation(output_2, fold_1, fold_2, fold_3, fold_4, fold_5)
+
     
 def randomizer(arr, n):                 #fisher yates algorithm
     for i in range(n-1, 0, -1):
@@ -39,65 +46,76 @@ def randomizer(arr, n):                 #fisher yates algorithm
 
 def folding(cd_list, num):
     avg = len(cd_list) / float(num)
-    output = []
     last = 0.0
     
-    # for i in range(1, num + 1):
-    #     os.mkdir('/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_' + str(i) + '/')
+    for i in range(1, num + 1):
+        os.mkdir('/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_' + str(i) + '/')
 
-    while last < len(cd_list):
-        output.append(cd_list[int(last):int(last + avg)])
+    for photo in cd_list:
+        output_1.append(photo[1])
+
+    while last < len(output_1):
+        output_2.append(output_1[int(last):int(last + avg)])
         last += avg
 
-    # i = 0
-    # for fold in output:
-    #     j = 0
-    #     for photo in fold[i]:
-    #         print(fold)
-    #         j += 1
-    #         #shutil.move(photo[i][j], '/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_' + str(i) + '/')
-        # i += 1
-    # print(len(output))
-    # i = 0
     i = 0
-    for l1sts in output:
+    for l1sts in output_2:
         for photo in l1sts:
-            print(photo[1])
-            print(len(photo[1]))
-            # if i in range(0,20):
-            #     print('fold1')
-            #     print(photo[1])
-            #     # shutil.move(photo, '/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_1')
-            # elif i in range(20,40):
-            #     print('fold2')
-            #     print(photo[1])
-            # elif i in range(40, 60):
-            #     print('fold3')
-            #     print(photo[i])
-            # elif i in range(60, 80):
-            #     print('fold4')
-            #     print(photo[i])
-            # elif i in range(80, 100):
-            #     print('fold5')
-            #     print(photo[i])
-            # i += 1
+            if i in range(0,20):
+                fold_1.append(photo)             #I DON'T KNOW IF WE SHOULD DO THIS!!! Just add photo not index
+                shutil.copy(photo, '/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_1')
             
+            if i in range(20,40):
+                fold_2.append(photo)
+                shutil.copy(photo, '/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_2')
 
-        # for subl1sts in l1sts:
-        #     print(subl1sts[l1sts][1])
+            if i in range(40, 60):
+                fold_3.append(photo)
+                shutil.copy(photo, '/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_3')
+            
+            if i in range(60, 80):
+                fold_4.append(photo)
+                shutil.copy(photo, '/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_4')
+            
+            if i in range(80, 100):
+                fold_5.append(photo)
+                shutil.copy(photo, '/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_5')
+            i += 1
 
-    # for k,v in output:
-    #     if k < 21:
-    #         shutil.move(v,'/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_1')
-    #     elif k < 41:
-    #         shutil.move(v,'/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_2')
-    #     elif k < 61:
-    #         shutil.move(v,'/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_3')
-    #     elif k < 81:
-    #         shutil.move(v,'/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_4')
-    #     elif k < 101:
-    #         shutil.move(v,'/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_5')
+    return output_2, fold_1, fold_2, fold_3, fold_4, fold_5
 
-    return output
+def x_validation(output_2, fold_1, fold_2, fold_3, fold_4, fold_5):
+    training_set_1 = []
+    validation_set_1 = fold_1
+    for fold in output_2:
+        if fold != validation_set_1:
+            training_set_1.append(fold)
+
+    training_set_2 = []
+    validation_set_2 = fold_2
+    for fold in output_2:
+        if fold != validation_set_2:
+            training_set_2.append(fold)
+
+    training_set_3 = []
+    validation_set_3 = fold_3
+    for fold in output_2:
+        if fold != validation_set_3:
+            training_set_3.append(fold)
+    
+    training_set_4 = []
+    validation_set_4 = fold_4
+    for fold in output_2:
+        if fold != validation_set_4:
+            training_set_4.append(fold)
+    
+    training_set_5 = []
+    validation_set_5 = fold_5
+    for fold in output_2:
+        if fold != validation_set_5:
+            training_set_5.append(fold)
+
+    return training_set_1, training_set_2, training_set_3, training_set_4, training_set_5
+
 if __name__ == '__main__':
     main()
