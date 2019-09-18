@@ -39,6 +39,3 @@ def extractFeatures(imgString):
     edges = cv2.Canny(img,100,200)
     features.append(len(edges))
     print(features)
-
-def main():
-    extractFeatures('photos/cats/cat.4001.jpg')
