@@ -4,12 +4,13 @@ import cv2
 import numpy as np
 import csv
 import os
+import pandas as pd
 
-features = []
 
 #Import relative path to image (must be as string)
 #Format of list - [corners value, orb value, edge value]
 def extractFeatures(imgString):
+    features = []
     #FEATURE EXTRACTION - CORNERS
     img = cv2.imread(imgString)
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -40,6 +41,7 @@ def extractFeatures(imgString):
     img = cv2.imread(imgString, 0)
     edges = cv2.Canny(img,100,200)
     features.append(len(edges))
+
     return features
 
 def main():
@@ -54,13 +56,13 @@ def main():
     #         wr.writerow(extractFeatures(os.path.relpath(relpath)))
     filenum = 4001
     string  = 'photos/cats/cat.'+ str(4001) +'.jpg'
-    i = 0
+    listofvals = []
     for x in range(4001,4051):
         string = 'photos/cats/cat.' + str(x) + '.jpg'
-        with open("output.csv", "a", newline='') as fp:
-            wr = csv.writer(fp, dialect='excel')
-            wr.writerow(extractFeatures(string))
-
+        listofvals.append(extractFeatures(string))
+    #print(listofvals)
+    df = pd.DataFrame(listofvals)
+    print(df)
 
 
 
