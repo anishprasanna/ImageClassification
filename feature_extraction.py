@@ -1,5 +1,4 @@
 import glob
-
 import cv2
 import numpy as np
 import csv
@@ -28,7 +27,7 @@ def extractFeatures(imgString):
     features.append(len(corners))
 
     #FEATURE EXTRACTION - ORB KEYPOINTS
-    img = cv2.imread('photos/cats/cat.4001.jpg', 0)
+    img = cv2.imread(imgString, 0)
     # Initiate detector and find ORB keypoints
     orb = cv2.ORB_create()
     kp = orb.detect(img,None)
@@ -45,25 +44,35 @@ def extractFeatures(imgString):
     return features
 
 def main():
-    #extractFeatures('photos/cats/cat.4001.jpg')
-    relpath = os.listdir('photos/cats')
-    # for file in os.listdir(relpath):
-    #     print(file)
-    #     with open("output.csv", "a", newline='') as fp:
-    #         wr = csv.writer(fp, dialect='excel')
-    #         print("Bullshit")
-    #         print(relpath)
-    #         wr.writerow(extractFeatures(os.path.relpath(relpath)))
+
     filenum = 4001
     string  = 'photos/cats/cat.'+ str(4001) +'.jpg'
     listofvals = []
     for x in range(4001,4051):
         string = 'photos/cats/cat.' + str(x) + '.jpg'
         listofvals.append(extractFeatures(string))
-    #print(listofvals)
-    df = pd.DataFrame(listofvals)
-    print(df)
+    dfCats = pd.DataFrame(listofvals)
+    dfCats.columns = ['Corners', 'Keypoints', 'Edges']
+    #Labels for classifier, if 0 image is cat, if 1 image is dog
+    dfCats['Label'] = 0
+    
 
-
+    filenum = 4001
+    string  = 'photos/dogs/dog.'+ str(4001) +'.jpg'
+    listofvals = []
+    for x in range(4001,4051):
+        string = 'photos/dogs/dog.' + str(x) + '.jpg'
+        listofvals.append(extractFeatures(string))
+    dfDogs = pd.DataFrame(listofvals)
+    dfDogs.columns = ['Corners', 'Keypoints', 'Edges']
+    #Labels for classifier, if 0 image is cat, if 1 image is dog
+    dfDogs['Label'] = 1
+    
+    #Concat DataFrames
+    # frames = [dfCats, dfDogs]
+    # finaldf = pd.concat(frames)
+    # finaldf = finaldf.reset_index()
+    # finaldf = finaldf.drop(['index'], axis=1)
+    # print(finaldf)
 
 main()
