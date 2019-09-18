@@ -11,7 +11,7 @@ def main():
     dog_photos = glob.glob('/Users/Carlos/Projects/Data_Mining/imageProcessing_2/photos/dogs' + '/*.jpg')
     
     #sort photos
-    
+
     cat_photos.sort()
     dog_photos.sort()
     # print(cat_photos)
