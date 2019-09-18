@@ -12,6 +12,7 @@ fold_3 = []
 fold_4 = []
 fold_5 = []
 
+
 def main():
     #collect list of file paths from cats and dogs
     cat_photos = glob.glob('/Users/Carlos/Projects/Dogs_vs_Cats/photos/cats' + '/*.jpg')
