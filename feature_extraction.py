@@ -1,5 +1,7 @@
 import cv2
 import numpy as np
+import csv
+import os
 
 features = []
 
@@ -33,7 +35,23 @@ def extractFeatures(imgString):
     features.append(len(kp))
 
     #FEATURE EXTRACTION - CANNY EDGE DETECTION
-    img = cv2.imread('photos/cats/cat.4001.jpg', 0)
+    img = cv2.imread(imgString, 0)
     edges = cv2.Canny(img,100,200)
     features.append(len(edges))
-    print(features)
+    return features
+
+def main():
+    #extractFeatures('photos/cats/cat.4001.jpg')
+    relpath = os.listdir('photos/cats')
+    # for file in os.listdir(relpath):
+    #     print(file)
+    #     with open("output.csv", "a", newline='') as fp:
+    #         wr = csv.writer(fp, dialect='excel')
+    #         print("Bullshit")
+    #         print(relpath)
+    #         wr.writerow(extractFeatures(os.path.relpath(relpath)))
+    with open("output.csv", "a", newline='') as fp:
+        wr = csv.writer(fp, dialect='excel')
+        wr.writerow(extractFeatures('photos/cats/cat.4001.jpg'))
+
+main()
