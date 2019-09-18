@@ -3,6 +3,15 @@ import random
 import os
 import shutil
 
+global output_1, output_2, fold_1, fold_2, fold_3, fold_4, fold_5
+output_1 = []
+output_2 = []
+fold_1 = []
+fold_2 = []
+fold_3 = []
+fold_4 = []
+fold_5 = []
+
 def main():
     #collect list of file paths from cats and dogs
     cat_photos = glob.glob('/Users/Carlos/Projects/Dogs_vs_Cats/photos/cats' + '/*.jpg')
@@ -42,27 +51,6 @@ def folding(cd_list, num):
     for i in range(1, num + 1):
         os.mkdir('/Users/Carlos/Projects/Dogs_vs_Cats/photos/fold_' + str(i) + '/')
 
-    global output_1
-    output_1 = []
-
-    global output_2
-    output_2 = []
-
-    global fold_1
-    fold_1 = []
-
-    global fold_2
-    fold_2 = []
-
-    global fold_3
-    fold_3 = []
-
-    global fold_4
-    fold_4 = []
-
-    global fold_5
-    fold_5 = []
-
     for photo in cd_list:
         output_1.append(photo[1])
 
@@ -97,10 +85,6 @@ def folding(cd_list, num):
     return output_2, fold_1, fold_2, fold_3, fold_4, fold_5
 
 def x_validation(output_2, fold_1, fold_2, fold_3, fold_4, fold_5):
-    # for fold in output_2:
-    #     fold.sort()
-    #     print(fold)
-
     training_set_1 = []
     validation_set_1 = fold_1
     for fold in output_2:
@@ -131,8 +115,7 @@ def x_validation(output_2, fold_1, fold_2, fold_3, fold_4, fold_5):
         if fold != validation_set_5:
             training_set_5.append(fold)
 
-    print('validation set is:\n {0}'.format(validation_set_1))
-    print('training set is:\n {0}'.format(training_set_1))
+    return training_set_1, training_set_2, training_set_3, training_set_4, training_set_5
 
 if __name__ == '__main__':
     main()
