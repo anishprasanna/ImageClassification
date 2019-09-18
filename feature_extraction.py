@@ -1,3 +1,5 @@
+import glob
+
 import cv2
 import numpy as np
 import csv
@@ -50,8 +52,16 @@ def main():
     #         print("Bullshit")
     #         print(relpath)
     #         wr.writerow(extractFeatures(os.path.relpath(relpath)))
-    with open("output.csv", "a", newline='') as fp:
-        wr = csv.writer(fp, dialect='excel')
-        wr.writerow(extractFeatures('photos/cats/cat.4001.jpg'))
+    filenum = 4001
+    string  = 'photos/cats/cat.'+ str(4001) +'.jpg'
+    i = 0
+    for x in range(4001,4051):
+        string = 'photos/cats/cat.' + str(x) + '.jpg'
+        with open("output.csv", "a", newline='') as fp:
+            wr = csv.writer(fp, dialect='excel')
+            wr.writerow(extractFeatures(string))
+
+
+
 
 main()
