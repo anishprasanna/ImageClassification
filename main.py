@@ -42,13 +42,14 @@ def main():
     cv_list = cross_validation(foldList)
     training = cv_list[0]
     test = cv_list[1]
-    print("Training: ", type(training[0]))
-    print("Test: ", type(test[0]))
+    #print("Training: ", type(training[0]))
+    #print("Test: ", type(test[0]))
+    #FOR NOW taking the first test set and first training set from each list... do we have to do all of them?? 
     test = test[0]
     training = training[0]
 
     #FIX KNN
-    #findBestK(test, training)
+    findBestK(test, training)
 
     #x_validation(output_2, fold_1, fold_2, fold_3, fold_4, fold_5)
 

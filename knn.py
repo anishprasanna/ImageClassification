@@ -21,7 +21,10 @@ def getAccuracy(testSet, predictions):
 
 
 def findBestK(testData, trainingData):
-    predictions = np.empty(len(testData + 1), dtype=float)
+    testData = testData.reset_index()
+    trainingData = trainingData.reset_index()
+    print(trainingData)
+    predictions = np.empty(len(testData + 1), dtype=int)
 
     accuracyForEachK = np.empty(10, dtype=float)
 
@@ -30,7 +33,7 @@ def findBestK(testData, trainingData):
     while (k <= 10):
         value = 0
         #for each row in testData
-        print("Making predictions for each element in testData (this may take a while)...")
+        print("Making predictions for k = ", k)
         while (value < len(testData)):
             #empty array of distances of trainingData from instance in testData
             distances = np.empty(len(trainingData), dtype=float)
@@ -53,9 +56,9 @@ def findBestK(testData, trainingData):
                 smallest = distances.min()
                 location = np.where(distances == smallest)
 
-                testTuple = location[index]
+                testTuple = location[0]
                 # if there is a tie
-                if (len(location[index]) > 1):
+                if (len(location[0]) > 1):
                     testList = list(testTuple)
                     testList.pop(1)
                     testTuple = tuple(testList)
@@ -97,7 +100,7 @@ def findBestK(testData, trainingData):
     highestAccuracyPercentage = accuracyForEachK.max()
     bestKTuple = (np.where(accuracyForEachK == highestAccuracyPercentage))
     bestK = bestKTuple[0][0] + 1
-    print(highestAccuracyPercentage)
+    #print(highestAccuracyPercentage)
     print('Best k-value = ' , bestK)
 
     #return (accuracyForEachK, highestAccuracyPercentage, bestK)
