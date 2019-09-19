@@ -4,6 +4,7 @@ import os
 import shutil
 from feature_extraction import *
 from knn import *
+# from scikit import *
 
 global output_1, output_2, fold_1, fold_2, fold_3, fold_4, fold_5
 output_1 = []
@@ -32,6 +33,9 @@ def main():
 
     #FIX KNN
     findBestK(test, training)
+    
+    # for knn_val in range (1,11):
+    #     sk_knn(test, training, knn_val)
 
     #x_validation(output_2, fold_1, fold_2, fold_3, fold_4, fold_5)
 
