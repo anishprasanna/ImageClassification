@@ -103,4 +103,19 @@ def findBestK(testData, trainingData):
     #print(highestAccuracyPercentage)
     print('Best k-value = ' , bestK)
 
+    # Plot showing accuracies for each K-Value
+    bars = ('1', '2', '3', '4', '5', '6', '7', '8', '9', '10')
+    y_pos = np.arange(len(bars))
+    # Create bars
+    plt.bar(y_pos, accuracyForEachK)
+    # Create names on the x-axis
+    plt.xticks(y_pos, bars)
+    # Add title and axis names
+    plt.title('Accuracy for each K-Value')
+    plt.xlabel('K')
+    plt.ylabel('Accuracy Percentage')
+    # Show graphic
+    plt.show()
+
+
     #return (accuracyForEachK, highestAccuracyPercentage, bestK)
