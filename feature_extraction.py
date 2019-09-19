@@ -43,7 +43,7 @@ def extractFeatures(imgString):
 
     return features
 
-def main():
+def createDF():
 
     filenum = 4001
     string  = 'photos/cats/cat.'+ str(4001) +'.jpg'
@@ -69,10 +69,8 @@ def main():
     dfDogs['Label'] = 1
     
     #Concat DataFrames
-    # frames = [dfCats, dfDogs]
-    # finaldf = pd.concat(frames)
-    # finaldf = finaldf.reset_index()
-    # finaldf = finaldf.drop(['index'], axis=1)
-    # print(finaldf)
-
-main()
+    frames = [dfCats, dfDogs]
+    finaldf = pd.concat(frames)
+    finaldf = finaldf.reset_index()
+    finaldf = finaldf.drop(['index'], axis=1)
+    print(finaldf)
