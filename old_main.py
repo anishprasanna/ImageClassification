@@ -40,3 +40,36 @@ def folding(cd_list, num):
             i += 1
 
     return output_2, fold_1, fold_2, fold_3, fold_4, fold_5
+
+def x_validation(output_2, fold_1, fold_2, fold_3, fold_4, fold_5):
+    training_set_1 = []
+    validation_set_1 = fold_1
+    for fold in output_2:
+        if fold != validation_set_1:
+            training_set_1.append(fold)
+
+    training_set_2 = []
+    validation_set_2 = fold_2
+    for fold in output_2:
+        if fold != validation_set_2:
+            training_set_2.append(fold)
+
+    training_set_3 = []
+    validation_set_3 = fold_3
+    for fold in output_2:
+        if fold != validation_set_3:
+            training_set_3.append(fold)
+    
+    training_set_4 = []
+    validation_set_4 = fold_4
+    for fold in output_2:
+        if fold != validation_set_4:
+            training_set_4.append(fold)
+    
+    training_set_5 = []
+    validation_set_5 = fold_5
+    for fold in output_2:
+        if fold != validation_set_5:
+            training_set_5.append(fold)
+
+    return training_set_1, training_set_2, training_set_3, training_set_4, training_set_5

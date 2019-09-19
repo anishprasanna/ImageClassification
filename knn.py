@@ -53,9 +53,9 @@ def findBestK(testData, trainingData):
                 smallest = distances.min()
                 location = np.where(distances == smallest)
 
-                testTuple = location[0]
+                testTuple = location[index]
                 # if there is a tie
-                if (len(location[i]) > 1):
+                if (len(location[index]) > 1):
                     testList = list(testTuple)
                     testList.pop(1)
                     testTuple = tuple(testList)

@@ -4,7 +4,6 @@ import numpy as np
 import csv
 import os
 import pandas as pd
-from main import randomizer
 
 #Import relative path to image (must be as string)
 #Format of list - [corners value, orb value, edge value]

@@ -32,13 +32,14 @@ def main():
     
     #create a list of dictionary items
     cd_list = list(indexed_cd.items())
-    
-    randomizer(cd_list, len(indexed_cd))
+
+    finaldf = createDF()
+    finaldf = randomizer(finaldf, len(finaldf))
 
     #create a folder for every 20 images we have in the list.
-    folding(cd_list, 5)
-
-    x_validation(output_2, fold_1, fold_2, fold_3, fold_4, fold_5)
+    foldList = folding(finaldf, 5)
+    cross_validation(foldList)
+    #x_validation(output_2, fold_1, fold_2, fold_3, fold_4, fold_5)
 
 #fisher yates algorithm
 def randomizer(arr, n):
@@ -63,43 +64,29 @@ def folding(finaldf, num):
         fold = finaldf.iloc[x:(x + 20)]
         foldList.append(fold)
         x += foldlength
-    count = 0
-    #print everything out
-    # for item in foldList:
-    #     print(foldList[count])
+    return foldList
 
-def x_validation(output_2, fold_1, fold_2, fold_3, fold_4, fold_5):
-    training_set_1 = []
-    validation_set_1 = fold_1
-    for fold in output_2:
-        if fold != validation_set_1:
-            training_set_1.append(fold)
-
-    training_set_2 = []
-    validation_set_2 = fold_2
-    for fold in output_2:
-        if fold != validation_set_2:
-            training_set_2.append(fold)
-
-    training_set_3 = []
-    validation_set_3 = fold_3
-    for fold in output_2:
-        if fold != validation_set_3:
-            training_set_3.append(fold)
-    
-    training_set_4 = []
-    validation_set_4 = fold_4
-    for fold in output_2:
-        if fold != validation_set_4:
-            training_set_4.append(fold)
-    
-    training_set_5 = []
-    validation_set_5 = fold_5
-    for fold in output_2:
-        if fold != validation_set_5:
-            training_set_5.append(fold)
-
-    return training_set_1, training_set_2, training_set_3, training_set_4, training_set_5
+def cross_validation(foldList):
+    training_list = []
+    test_list = []
+    finalTraining = []
+    i = 0
+    for fold in foldList:
+        #test_list[i] = foldList[i]
+        test_list.insert(i, foldList[i])
+        j = 0
+        for other in foldList:
+            if not foldList[j].equals(foldList[i]):
+                training_list.insert(i, foldList[j])
+                if len(training_list) > 3:
+                    temp = [training_list[0], training_list[1], training_list[2], training_list[3]]
+                    temp = pd.concat(temp)
+                    finalTraining.insert(i, temp)
+                    training_list = []
+            j += 1
+        i += 1
+    print("training list" , finalTraining)
+    return finalTraining, test_list
 
 if __name__ == '__main__':
     main()
