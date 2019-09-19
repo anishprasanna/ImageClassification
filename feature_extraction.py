@@ -25,15 +25,24 @@ def extractFeatures(imgString):
     #add number of corners to list
     features.append(len(corners))
 
-    #FEATURE EXTRACTION - ORB KEYPOINTS
-    img = cv2.imread(imgString, 0)
-    # Initiate detector and find ORB keypoints
-    orb = cv2.ORB_create()
-    kp = orb.detect(img,None)
-    # compute the descriptors with ORB
-    kp, des = orb.compute(img, kp)
-    #add number of keypoints to list
-    features.append(len(kp))
+    # #FEATURE EXTRACTION - ORB KEYPOINTS (here for safe keeping)
+    # img = cv2.imread(imgString, 0)
+    # # Initiate detector and find ORB keypoints
+    # orb = cv2.ORB_create()
+    # orb.setMaxFeatures(200)
+    # print("Max features allowed is: " , cv2.ORB.getMaxFeatures(orb))
+    # kp = orb.detect(img,None)
+    # # compute the descriptors with ORB
+    # kp, des = orb.compute(img, kp)
+    # #add number of keypoints to list
+    # features.append(len(kp))
+
+    #FEATURE EXTRACTION - BRISK
+    image = cv2.imread(imgString)
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    brisk = cv2.BRISK_create()
+    (kps, descs) = brisk.detectAndCompute(gray, None)
+    features.append(len(kps))
 
     #FEATURE EXTRACTION - CANNY EDGE DETECTION
     img = cv2.imread(imgString, 0)
