@@ -51,9 +51,7 @@ def main():
     #print(testDataVals.head())
 
     start = time.time()
-
-
-    your_model = KNeighborsClassifier(n_neighbors = bestk, weights  = 'distance')
+    your_model = KNeighborsClassifier(n_neighbors = bestk, weights = 'distance')
     #trainingDataLabs = trainingDataLabs.as_matrix(columns=[trainingDataLabs[0]])
     your_model.fit(trainingDataVals, trainingDataLabs.values.ravel())
     #print(trainingDataLabs)
@@ -62,8 +60,9 @@ def main():
     # y is the labels
 
     # Returns a list of predicted classes - one prediction for every data point
-    predictions = your_model.predict(testDataVals)
-    print('KNN scikit Accuracy: ' + str(your_model.score(testDataVals,testDataLabs)))
+    predictions2 = your_model.predict(testDataVals)
+    #print('KNN scikit accuracy' + str(metrics.accuracy_score(testDataLabs, predictions2)))
+    x = str(metrics.accuracy_score(testDataLabs, predictions2))
     end = time.time()
     print('KNN scikit time taken: ' + str(end - start))
 
