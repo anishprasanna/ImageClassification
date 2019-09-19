@@ -42,8 +42,6 @@ def extractFeatures(imgString):
     return features
 
 def createDF():
-    filenum = 4001
-    string  = 'photos/cats/cat.'+ str(4001) +'.jpg'
     listofvals = []
     for x in range(4001,4051):
         string = 'photos/cats/cat.' + str(x) + '.jpg'
@@ -53,9 +51,6 @@ def createDF():
     #Labels for classifier, if 0 image is cat, if 1 image is dog
     dfCats['Label'] = 0
     
-
-    filenum = 4001
-    string  = 'photos/dogs/dog.'+ str(4001) +'.jpg'
     listofvals = []
     for x in range(4001,4051):
         string = 'photos/dogs/dog.' + str(x) + '.jpg'
