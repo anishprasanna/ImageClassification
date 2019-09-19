@@ -3,6 +3,7 @@ import random
 import os
 import shutil
 
+
 global output_1, output_2, fold_1, fold_2, fold_3, fold_4, fold_5
 output_1 = []
 output_2 = []
@@ -39,10 +40,14 @@ def main():
     x_validation(output_2, fold_1, fold_2, fold_3, fold_4, fold_5)
 
     
-def randomizer(arr, n):                 #fisher yates algorithm
-    for i in range(n-1, 0, -1):
+def randomizer(arr, n): 
+                  #fisher yates algorithm
+    for i in range(n-1, -1, -1):
         j = random.randint(0, i+1)
-        arr[i], arr[j] = arr[j], arr[i]
+        # arr.iloc[i], arr.iloc[j] = arr.iloc[j], arr.iloc[i]
+        temp = arr.iloc[i].copy()
+        arr.iloc[i] = arr.iloc[j]
+        arr.iloc[j] = temp
     return arr
 
 def folding(cd_list, num):

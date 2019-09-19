@@ -4,6 +4,7 @@ import numpy as np
 import csv
 import os
 import pandas as pd
+from main import randomizer
 
 
 #Import relative path to image (must be as string)
@@ -73,4 +74,12 @@ def createDF():
     finaldf = pd.concat(frames)
     finaldf = finaldf.reset_index()
     finaldf = finaldf.drop(['index'], axis=1)
-    print(finaldf)
+    #print(finaldf)
+    return finaldf
+
+df = createDF()
+print('OG')
+print(df)
+newDf = randomizer(df, len(df))
+print('NEW')
+print(newDf)
