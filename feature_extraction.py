@@ -71,16 +71,4 @@ def createDF():
     finaldf = pd.concat(frames)
     finaldf = finaldf.reset_index()
     finaldf = finaldf.drop(['index'], axis=1)
-<<<<<<< HEAD
     return finaldf
-=======
-    #print(finaldf)
-    return finaldf
-
-df = createDF()
-print('OG')
-print(df)
-newDf = randomizer(df, len(df))
-print('NEW')
-print(newDf)
->>>>>>> 1a39beaaa42e4d3d9813fdd80551fa92ea6ade0f

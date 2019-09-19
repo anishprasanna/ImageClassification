@@ -40,16 +40,9 @@ def main():
 
     x_validation(output_2, fold_1, fold_2, fold_3, fold_4, fold_5)
 
-<<<<<<< HEAD
 #fisher yates algorithm
 def randomizer(arr, n):
     for i in range(n-1, 0, -1):
-=======
-    
-def randomizer(arr, n): 
-                  #fisher yates algorithm
-    for i in range(n-1, -1, -1):
->>>>>>> 1a39beaaa42e4d3d9813fdd80551fa92ea6ade0f
         j = random.randint(0, i+1)
         # arr.iloc[i], arr.iloc[j] = arr.iloc[j], arr.iloc[i]
         temp = arr.iloc[i].copy()
