@@ -20,8 +20,6 @@ def getAccuracy(testSet, predictions):
          correct += 1
    return (correct / float(len(testSet))) * 100.0
 
-
-
 def findBestK(testData, trainingData):
     start_time = time.time()
     testData = testData.reset_index()
