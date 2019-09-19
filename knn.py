@@ -118,7 +118,7 @@ def findBestK(testData, trainingData):
     plt.xlabel('K')
     plt.ylabel('Accuracy Percentage')
     # Print Total Run Time
-    print("Total Run Time: %s seconds " % (time.time() - start_time))
+    print("Algorithm Run Time: %s seconds " % (time.time() - start_time))
     # Show graphic
     plt.show()
 
