@@ -6,15 +6,6 @@ from feature_extraction import *
 from knn import *
 # from scikit import *
 
-global output_1, output_2, fold_1, fold_2, fold_3, fold_4, fold_5
-output_1 = []
-output_2 = []
-fold_1 = []
-fold_2 = []
-fold_3 = []
-fold_4 = []
-fold_5 = []
-
 def main():
 
     finaldf = createDF()
