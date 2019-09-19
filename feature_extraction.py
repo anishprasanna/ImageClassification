@@ -5,7 +5,6 @@ import csv
 import os
 import pandas as pd
 
-
 #Import relative path to image (must be as string)
 #Format of list - [corners value, orb value, edge value]
 def extractFeatures(imgString):
@@ -40,11 +39,9 @@ def extractFeatures(imgString):
     img = cv2.imread(imgString, 0)
     edges = cv2.Canny(img,100,200)
     features.append(len(edges))
-
     return features
 
 def createDF():
-
     filenum = 4001
     string  = 'photos/cats/cat.'+ str(4001) +'.jpg'
     listofvals = []
@@ -73,4 +70,4 @@ def createDF():
     finaldf = pd.concat(frames)
     finaldf = finaldf.reset_index()
     finaldf = finaldf.drop(['index'], axis=1)
-    print(finaldf)
+    return finaldf
