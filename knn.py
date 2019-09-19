@@ -20,10 +20,10 @@ def getAccuracy(testSet, predictions):
 
 
 
-def main():
+def findBestK(testData, trainingData):
+    predictions = np.empty(len(testData + 1), dtype=float)
 
-
-    accurrayForEachK = np.empty(10, dtype=float)
+    accuracyForEachK = np.empty(10, dtype=float)
 
     k = 1
     print("Finding best k-value from 1-10")
@@ -89,14 +89,14 @@ def main():
         #print('Predictions: ' + str(predictions))
         #displays accuracy of predictions made
         print('Prediction accuracy: ' + str(getAccuracy(testData, predictions)) + "%")
-        accurrayForEachK[k - 1] = getAccuracy(testData, predictions)
+        accuracyForEachK[k - 1] = getAccuracy(testData, predictions)
 
         k += 1
 
     #returning the best k-value
-    highestAccuracyPercentage = accurrayForEachK.max()
-    bestK = (np.where(accurrayForEachK == highestAccuracyPercentage))
-    print('Best k-value = ' , bestK[0][0] + 1)
+    highestAccuracyPercentage = accuracyForEachK.max()
+    bestKTuple = (np.where(accuracyForEachK == highestAccuracyPercentage))
+    bestK = bestKTuple[0][0] + 1
+    print('Best k-value = ' , bestK)
 
-
-main()
+    return (accuracyForEachK, highestAccuracyPercentage, bestK)
