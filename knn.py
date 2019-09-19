@@ -8,6 +8,9 @@ import time
 
 
 #distance formula
+from sklearn.neighbors import KNeighborsClassifier
+
+
 def euclideanDistance(testAttribute1, testAttribute2, trainingAttribute1, trainingAttribute2, testAttribute3, trainingAttribute3):
    distance = pow((trainingAttribute1 - testAttribute1), 2) + pow((trainingAttribute2 - testAttribute2), 2) + pow((trainingAttribute3 - testAttribute3), 2)
    return math.sqrt(distance)
@@ -21,6 +24,7 @@ def getAccuracy(testSet, predictions):
    return (correct / float(len(testSet))) * 100.0
 
 def findBestK(testData, trainingData):
+
     start_time = time.time()
     testData = testData.reset_index()
     trainingData = trainingData.reset_index()
@@ -95,6 +99,7 @@ def findBestK(testData, trainingData):
         print('Prediction accuracy: ' + str(getAccuracy(testData, predictions)) + "%")
         accuracyForEachK[k - 1] = getAccuracy(testData, predictions)
 
+
         k += 1
 
     #returning the best k-value
@@ -117,9 +122,11 @@ def findBestK(testData, trainingData):
     plt.ylabel('Accuracy Percentage')
     # Print Total Run Time
     print("Algorithm Run Time: %s seconds " % (time.time() - start_time))
+    print("Average cross-validated accuracy " + str(accuracyForEachK.mean()))
     # Show graphic
     plt.show()
-
+    return bestK
+    # KNN Algorithim scikit
 
 
     #return (accuracyForEachK, highestAccuracyPercentage, bestK)

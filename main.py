@@ -5,6 +5,9 @@ import shutil
 from feature_extraction import *
 from knn import *
 # from scikit import *
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn import svm, metrics
+
 
 def main():
 
@@ -23,12 +26,59 @@ def main():
     training = training[0]
 
     #FIX KNN
-    findBestK(test, training)
-    
-    # for knn_val in range (1,11):
-    #     sk_knn(test, training, knn_val)
+    bestk  = findBestK(test, training)
 
-    #x_validation(output_2, fold_1, fold_2, fold_3, fold_4, fold_5)
+    your_model = KNeighborsClassifier()
+    trainingDataVals = training[['Corners','Keypoints','Edges']]
+    trainingDataLabs = training[['Label']]
+    testDataVals = test[['Corners','Keypoints','Edges']]
+    testDataLabs = test[['Label']]
+
+    trainingDataVals = trainingDataVals.reset_index()
+    trainingDataLabs = trainingDataLabs.reset_index()
+    testDataVals = testDataVals.reset_index()
+    testDataLabs = testDataLabs.reset_index()
+
+    trainingDataVals = trainingDataVals[['Corners', 'Keypoints', 'Edges']]
+    trainingDataLabs = trainingDataLabs[['Label']]
+    testDataVals = testDataVals[['Corners', 'Keypoints', 'Edges']]
+    testDataLabs = testDataLabs[['Label']]
+    #print(trainingDataVals.head())
+    #print(trainingDataLabs.head())
+    #print(testDataVals.head())
+
+    start = time.time()
+
+
+    your_model = KNeighborsClassifier(n_neighbors = bestk, weights  = 'distance')
+    #trainingDataLabs = trainingDataLabs.as_matrix(columns=[trainingDataLabs[0]])
+    your_model.fit(trainingDataVals, trainingDataLabs.values.ravel())
+    #print(trainingDataLabs)
+
+    # x is the values
+    # y is the labels
+
+    # Returns a list of predicted classes - one prediction for every data point
+    predictions = your_model.predict(testDataVals)
+    print('KNN scikit Accuracy: ' + str(your_model.score(testDataVals,testDataLabs)))
+    end = time.time()
+    print('KNN scikit time taken: ' + str(end - start))
+
+    # Create a svm Classifier
+    start1 = time.time()
+    clf = svm.SVC(kernel='linear')  # Linear Kernel
+
+    # Train the model using the training sets
+    clf.fit(trainingDataVals, trainingDataLabs.values.ravel())
+
+    # Predict the response for test dataset
+    y_pred = clf.predict(testDataVals)
+    print("Linear Kernel SVM Accuracy:", metrics.accuracy_score(testDataLabs, y_pred))
+    end1 = time.time()
+    print('KNN Linear Kernel SVM  time taken: ' + str(end1 - start1))
+
+
+
 
 #fisher yates algorithm
 def randomizer(arr, n):

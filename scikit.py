@@ -24,6 +24,3 @@ def sk_random_forest():
 
 def sk_gradient_boosting():
     print('this method is for gradient boosting classifier')
-
-if __name__ == '__main__':
-    main()
