@@ -2,6 +2,9 @@ import glob
 import random
 import os
 import shutil
+
+from sklearn.naive_bayes import MultinomialNB
+
 from feature_extraction import *
 from knn import *
 # from scikit import *
@@ -72,11 +75,22 @@ def main():
     clf.fit(trainingDataVals, trainingDataLabs.values.ravel())
 
     # Predict the response for test dataset
-    y_pred = clf.predict(testDataVals)
-    print("Linear Kernel SVM Accuracy:", metrics.accuracy_score(testDataLabs, y_pred))
+    y_pred1 = clf.predict(testDataVals)
+    print("Linear Kernel SVM Accuracy:", metrics.accuracy_score(testDataLabs, y_pred1))
     end1 = time.time()
     print('KNN Linear Kernel SVM  time taken: ' + str(end1 - start1))
+    start2 = time.time()
+    NB = MultinomialNB()
 
+
+
+    NB.fit(trainingDataVals, trainingDataLabs.values.ravel())
+
+    # Returns a list of predicted classes - one prediction for every data point
+    predictions1 = NB.predict(testDataVals)
+    print("Naive Bayes Accuracy:", metrics.accuracy_score(testDataLabs, predictions1))
+    end2 = time.time()
+    print('Naive Bayes  time taken: ' + str(end2 - start2))
 
 
 
