@@ -6,6 +6,7 @@ from feature_extraction import *
 from knn import *
 
 
+
 global output_1, output_2, fold_1, fold_2, fold_3, fold_4, fold_5
 output_1 = []
 output_2 = []
@@ -103,3 +104,4 @@ def cross_validation(foldList):
 
 if __name__ == '__main__':
     main()
+    

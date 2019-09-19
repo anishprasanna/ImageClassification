@@ -4,6 +4,8 @@ import pandas as pd
 import math
 import random
 import csv
+import time
+
 
 #distance formula
 def euclideanDistance(testAttribute1, testAttribute2, trainingAttribute1, trainingAttribute2, testAttribute3, trainingAttribute3):
@@ -21,6 +23,7 @@ def getAccuracy(testSet, predictions):
 
 
 def findBestK(testData, trainingData):
+    start_time = time.time()
     testData = testData.reset_index()
     trainingData = trainingData.reset_index()
     print(trainingData)
@@ -114,8 +117,11 @@ def findBestK(testData, trainingData):
     plt.title('Accuracy for each K-Value')
     plt.xlabel('K')
     plt.ylabel('Accuracy Percentage')
+    # Print Total Run Time
+    print("Total Run Time: %s seconds " % (time.time() - start_time))
     # Show graphic
     plt.show()
+
 
 
     #return (accuracyForEachK, highestAccuracyPercentage, bestK)
