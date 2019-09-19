@@ -77,9 +77,9 @@ def main():
             #print("Dog: ", dog)
             #using above results, predict the test instance to be a cat or dog
             if (cat > dog):
-                predictions[value] = 1.0
+                predictions[value] = 0
             elif (cat < dog):
-                predictions[value] = -1.0
+                predictions[value] = 1
             else:
                 predictions[value] = trainingData.loc[indexes[0], 'Label'].item()
             #print(value)
