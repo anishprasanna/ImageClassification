@@ -3,6 +3,7 @@ import random
 import os
 import shutil
 from feature_extraction import *
+from knn import *
 
 
 global output_1, output_2, fold_1, fold_2, fold_3, fold_4, fold_5
@@ -38,7 +39,17 @@ def main():
 
     #create a folder for every 20 images we have in the list.
     foldList = folding(finaldf, 5)
-    cross_validation(foldList)
+    cv_list = cross_validation(foldList)
+    training = cv_list[0]
+    test = cv_list[1]
+    print("Training: ", type(training[0]))
+    print("Test: ", type(test[0]))
+    test = test[0]
+    training = training[0]
+
+    #FIX KNN
+    #findBestK(test, training)
+
     #x_validation(output_2, fold_1, fold_2, fold_3, fold_4, fold_5)
 
 #fisher yates algorithm
@@ -81,12 +92,13 @@ def cross_validation(foldList):
                 if len(training_list) > 3:
                     temp = [training_list[0], training_list[1], training_list[2], training_list[3]]
                     temp = pd.concat(temp)
+                    temp.reset_index()
                     finalTraining.insert(i, temp)
                     training_list = []
             j += 1
         i += 1
-    print("training list" , finalTraining)
-    return finalTraining, test_list
+    #print("training list" , finalTraining)
+    return [finalTraining, test_list]
 
 if __name__ == '__main__':
     main()

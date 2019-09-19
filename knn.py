@@ -97,6 +97,7 @@ def findBestK(testData, trainingData):
     highestAccuracyPercentage = accuracyForEachK.max()
     bestKTuple = (np.where(accuracyForEachK == highestAccuracyPercentage))
     bestK = bestKTuple[0][0] + 1
+    print(highestAccuracyPercentage)
     print('Best k-value = ' , bestK)
 
-    return (accuracyForEachK, highestAccuracyPercentage, bestK)
+    #return (accuracyForEachK, highestAccuracyPercentage, bestK)
