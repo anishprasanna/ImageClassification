@@ -23,7 +23,7 @@ def getAccuracy(testSet, predictions):
          correct += 1
    return (correct / float(len(testSet))) * 100.0
 
-def findBestK(testData, trainingData):
+def findBestK(testData, trainingData, inst = 0):
 
     start_time = time.time()
     testData = testData.reset_index()
@@ -124,10 +124,12 @@ def findBestK(testData, trainingData):
     print("Algorithm Run Time: %s seconds " % (time.time() - start_time))
     print("Average cross-validated accuracy: " + str(accuracyForEachK.mean()))
     print("KNN scikit Accuracy cross-validated: " + str(accuracyForEachK.mean()*.01))
+
     # Show graphic
     plt.show()
     return bestK
     # KNN Algorithim scikit
+
 
 
     #return (accuracyForEachK, highestAccuracyPercentage, bestK)

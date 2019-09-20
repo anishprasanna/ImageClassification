@@ -91,6 +91,22 @@ def main():
     end2 = time.time()
     print('Naive Bayes  time taken: ' + str(end2 - start2))
 
+    # Plot showing accuracies for each K-Value
+    bars = ('SKNN', 'SSVM','SNB')
+    y_pos = np.arange(len(bars))
+    # Create bars
+    plt.bar(y_pos, [end-start,end1-start1,end2-start2])
+    # Create names on the x-axis
+    plt.xticks(y_pos, bars)
+    # Add title and axis names
+    plt.title('Time for each SciKit Classification Algorithm')
+    plt.xlabel('Classification Algo')
+    plt.ylabel('Time taken (s)')
+    plt.show()
+    plt.close()
+
+
+
 
 
 
