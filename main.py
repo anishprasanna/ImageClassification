@@ -77,7 +77,7 @@ def main():
     y_pred1 = clf.predict(testDataVals)
     print("Linear Kernel SVM Accuracy:", metrics.accuracy_score(testDataLabs, y_pred1))
     end1 = time.time()
-    print('KNN Linear Kernel SVM  time taken: ' + str(end1 - start1))
+    print('Linear Kernel SVM  time taken: ' + str(end1 - start1))
     start2 = time.time()
     NB = MultinomialNB()
 
