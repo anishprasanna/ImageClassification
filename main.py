@@ -51,7 +51,7 @@ def main():
     #print(testDataVals.head())
 
     start = time.time()
-    your_model = KNeighborsClassifier(n_neighbors = bestk)
+    your_model = KNeighborsClassifier(n_neighbors = bestk, weights='distance')
     #trainingDataLabs = trainingDataLabs.as_matrix(columns=[trainingDataLabs[0]])
     your_model.fit(trainingDataVals, trainingDataLabs.values.ravel())
     #print(trainingDataLabs)
