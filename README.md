@@ -22,7 +22,8 @@ Running the project:
 2. Run the following command, "python main.py"
 You should see the following output:
 
-" Finding best k-value from 1-10
+```
+Finding best k-value from 1-10
 Making predictions for k =  1
 1 out of 20 completed
 2 out of 20 completed
@@ -49,17 +50,18 @@ Making predictions for k =  2.... all the way to k = 10.
 then it will output
 Best k-value =  2
 Algorithm Run Time: 3.8419430255889893 seconds 
-Average cross-validated accuracy: 50.0"
+Average cross-validated accuracy: 50.0
+```
 
 Then it will show you a graph relating to accuracy for each k value. You close the graph, another graph on the time for each scikit classification algorithm then in the console, it will add:
 
-"
+```
 KNN scikit accuracy 0.45
 KNN scikit time taken: 0.004269123077392578
 Linear Kernel SVM Accuracy: 0.55
 KNN Linear Kernel SVM  time taken: 0.09250092506408691
 Naive Bayes Accuracy: 0.6
 Naive Bayes  time taken: 0.003875255584716797
-"
+```
 
 And then when you exit that graph, another graph will show, that will describe Scikit classification algorithm accuracies. And that is all!
