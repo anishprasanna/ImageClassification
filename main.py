@@ -51,7 +51,7 @@ def main():
     #print(testDataVals.head())
 
     start = time.time()
-    your_model = KNeighborsClassifier(n_neighbors = bestk, weights = 'distance')
+    your_model = KNeighborsClassifier(n_neighbors = bestk)
     #trainingDataLabs = trainingDataLabs.as_matrix(columns=[trainingDataLabs[0]])
     your_model.fit(trainingDataVals, trainingDataLabs.values.ravel())
     #print(trainingDataLabs)
@@ -61,8 +61,8 @@ def main():
 
     # Returns a list of predicted classes - one prediction for every data point
     predictions2 = your_model.predict(testDataVals)
-    #print('KNN scikit accuracy' + str(metrics.accuracy_score(testDataLabs, predictions2)))
-    x = str(metrics.accuracy_score(testDataLabs, predictions2))
+    print('KNN scikit accuracy ' + str(metrics.accuracy_score(testDataLabs, predictions2)))
+    #x = str(metrics.accuracy_score(testDataLabs, predictions2))
     end = time.time()
     print('KNN scikit time taken: ' + str(end - start))
 
@@ -102,6 +102,18 @@ def main():
     plt.title('Time for each SciKit Classification Algorithm')
     plt.xlabel('Classification Algo')
     plt.ylabel('Time taken (s)')
+    plt.show()
+    plt.close()
+    bars = ('SKNN', 'SSVM','SNB')
+    y_pos = np.arange(len(bars))
+    # Create bars
+    plt.bar(y_pos, [metrics.accuracy_score(testDataLabs, predictions2),metrics.accuracy_score(testDataLabs, y_pred1),metrics.accuracy_score(testDataLabs, predictions1)])
+    # Create names on the x-axis
+    plt.xticks(y_pos, bars)
+    # Add title and axis names
+    plt.title('SciKit Classification Algorithm Accuracies')
+    plt.xlabel('Classification Algo')
+    plt.ylabel('Accuracy %')
     plt.show()
     plt.close()
 

@@ -123,7 +123,7 @@ def findBestK(testData, trainingData, inst = 0):
     # Print Total Run Time
     print("Algorithm Run Time: %s seconds " % (time.time() - start_time))
     print("Average cross-validated accuracy: " + str(accuracyForEachK.mean()))
-    print("KNN scikit Accuracy cross-validated: " + str(accuracyForEachK.mean()*.01))
+    #print("KNN scikit Accuracy cross-validated: " + str(accuracyForEachK.mean()*.01))
 
     # Show graphic
     plt.show()
