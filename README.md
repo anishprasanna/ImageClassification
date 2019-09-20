@@ -17,6 +17,8 @@ Anish Prasanna:
 Carlos Samaniego:
 - Created original foundation of main, including fisher-yates shuffler, folding, cross validation, directory creation (main.py)
 
+In the ZIP file, we do not use the following scripts: fy_shuffle.py, scikit.py, and old_main.py
+
 Running the project:
 1. Before you run the project, please be sure to make an environment and pip install -r requirements.txt within the environment.
 2. Run the following command, "python main.py"
