@@ -1,13 +1,7 @@
-import glob
 import random
-import os
-import shutil
-
 from sklearn.naive_bayes import MultinomialNB
-
 from feature_extraction import *
 from knn import *
-# from scikit import *
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn import svm, metrics
 
@@ -22,13 +16,9 @@ def main():
     cv_list = cross_validation(foldList)
     training = cv_list[0]
     test = cv_list[1]
-    #print("Training: ", type(training[0]))
-    #print("Test: ", type(test[0]))
-    #FOR NOW taking the first test set and first training set from each list... do we have to do all of them?? 
     test = test[0]
     training = training[0]
 
-    #FIX KNN
     bestk  = findBestK(test, training)
 
     your_model = KNeighborsClassifier()
@@ -46,31 +36,23 @@ def main():
     trainingDataLabs = trainingDataLabs[['Label']]
     testDataVals = testDataVals[['Corners', 'Keypoints', 'Edges']]
     testDataLabs = testDataLabs[['Label']]
-    #print(trainingDataVals.head())
-    #print(trainingDataLabs.head())
-    #print(testDataVals.head())
+
 
     start = time.time()
-    your_model = KNeighborsClassifier(n_neighbors = bestk, weights='distance')
-    #trainingDataLabs = trainingDataLabs.as_matrix(columns=[trainingDataLabs[0]])
-    your_model.fit(trainingDataVals, trainingDataLabs.values.ravel())
-    #print(trainingDataLabs)
-
-    # x is the values
-    # y is the labels
+    knn = KNeighborsClassifier(n_neighbors = bestk, weights='distance')
+    knn.fit(trainingDataVals, trainingDataLabs.values.ravel())
 
     # Returns a list of predicted classes - one prediction for every data point
-    predictions2 = your_model.predict(testDataVals)
+    predictions2 = knn.predict(testDataVals)
     print('KNN scikit accuracy ' + str(metrics.accuracy_score(testDataLabs, predictions2)))
-    #x = str(metrics.accuracy_score(testDataLabs, predictions2))
     end = time.time()
     print('KNN scikit time taken: ' + str(end - start))
 
-    # Create a svm Classifier
+    # Creates a svm Classifier
     start1 = time.time()
     clf = svm.SVC(kernel='linear')  # Linear Kernel
 
-    # Train the model using the training sets
+    # Trains the model using the training sets
     clf.fit(trainingDataVals, trainingDataLabs.values.ravel())
 
     # Predict the response for test dataset
@@ -92,7 +74,7 @@ def main():
     print('Naive Bayes  time taken: ' + str(end2 - start2))
 
     # Plot showing accuracies for each K-Value
-    bars = ('SKNN', 'SSVM','SNB')
+    bars = ('KNN', 'SVM','Naive Bayes')
     y_pos = np.arange(len(bars))
     # Create bars
     plt.bar(y_pos, [end-start,end1-start1,end2-start2])
@@ -100,11 +82,11 @@ def main():
     plt.xticks(y_pos, bars)
     # Add title and axis names
     plt.title('Time for each SciKit Classification Algorithm')
-    plt.xlabel('Classification Algo')
+    plt.xlabel('Classification Algorithm')
     plt.ylabel('Time taken (s)')
-    plt.show()
+    plt.savefig('Time_AlgAnalysis.png', bbox_inches='tight')
     plt.close()
-    bars = ('SKNN', 'SSVM','SNB')
+    bars = ('KNN', 'SVM','Naive Bayes')
     y_pos = np.arange(len(bars))
     # Create bars
     plt.bar(y_pos, [metrics.accuracy_score(testDataLabs, predictions2),metrics.accuracy_score(testDataLabs, y_pred1),metrics.accuracy_score(testDataLabs, predictions1)])
@@ -112,15 +94,10 @@ def main():
     plt.xticks(y_pos, bars)
     # Add title and axis names
     plt.title('SciKit Classification Algorithm Accuracies')
-    plt.xlabel('Classification Algo')
+    plt.xlabel('Classification Algorithm')
     plt.ylabel('Accuracy %')
-    plt.show()
+    plt.savefig('AlgAccuracyComparison.png', bbox_inches='tight')
     plt.close()
-
-
-
-
-
 
 #fisher yates algorithm
 def randomizer(arr, n):
@@ -132,7 +109,7 @@ def randomizer(arr, n):
         arr.iloc[j] = temp
     return arr
 
-#make dataframe for folding algo 
+#make dataframe for folds
 finaldf = createDF()
 def folding(finaldf, num):
     length = len(finaldf.index)
@@ -153,7 +130,6 @@ def cross_validation(foldList):
     finalTraining = []
     i = 0
     for fold in foldList:
-        #test_list[i] = foldList[i]
         test_list.insert(i, foldList[i])
         j = 0
         for other in foldList:
@@ -167,8 +143,7 @@ def cross_validation(foldList):
                     training_list = []
             j += 1
         i += 1
-    #print("training list" , finalTraining)
-    return [finalTraining, test_list]
+        return [finalTraining, test_list]
 
 if __name__ == '__main__':
     main()

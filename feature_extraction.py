@@ -1,8 +1,5 @@
-import glob
 import cv2
 import numpy as np
-import csv
-import os
 import pandas as pd
 
 #Import relative path to image (must be as string)
@@ -25,7 +22,7 @@ def extractFeatures(imgString):
     #add number of corners to list
     features.append(len(corners))
 
-    #FEATURE EXTRACTION - ORB KEYPOINTS (here for safe keeping)
+    #FEATURE EXTRACTION -
     img = cv2.imread(imgString, 0)
     # Initiate detector and find ORB keypoints
     orb = cv2.ORB_create()

@@ -1,13 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import pandas as pd
 import math
-import random
-import csv
 import time
-
-
-#distance formula
 from sklearn.neighbors import KNeighborsClassifier
 
 
@@ -28,7 +22,7 @@ def findBestK(testData, trainingData, inst = 0):
     start_time = time.time()
     testData = testData.reset_index()
     trainingData = trainingData.reset_index()
-    print(trainingData)
+    #print(trainingData)
     predictions = np.empty(len(testData + 1), dtype=int)
 
     accuracyForEachK = np.empty(10, dtype=float)
@@ -38,7 +32,7 @@ def findBestK(testData, trainingData, inst = 0):
     while (k <= 10):
         value = 0
         #for each row in testData
-        print("Making predictions for k = ", k)
+        #print("Making predictions for k = ", k)
         while (value < len(testData)):
             #empty array of distances of trainingData from instance in testData
             distances = np.empty(len(trainingData), dtype=float)
@@ -81,8 +75,7 @@ def findBestK(testData, trainingData, inst = 0):
                 else:
                     dog += 1
                 value1 += 1
-            #print("Cat: ", cat)
-            #print("Dog: ", dog)
+
             #using above results, predict the test instance to be a cat or dog
             if (cat > dog):
                 predictions[value] = 0
@@ -92,11 +85,11 @@ def findBestK(testData, trainingData, inst = 0):
                 predictions[value] = trainingData.loc[indexes[0], 'Label'].item()
             #print(value)
             value += 1
-            print(str(value) + " out of " + str(len(testData)) + " completed")
+            #print(str(value) + " out of " + str(len(testData)) + " completed")
 
         #print('Predictions: ' + str(predictions))
         #displays accuracy of predictions made
-        print('Prediction accuracy: ' + str(getAccuracy(testData, predictions)) + "%")
+        print('Prediction accuracy for k = ',k,' : ' + str(getAccuracy(testData, predictions)) + "%")
         accuracyForEachK[k - 1] = getAccuracy(testData, predictions)
 
 
@@ -117,19 +110,15 @@ def findBestK(testData, trainingData, inst = 0):
     # Create names on the x-axis
     plt.xticks(y_pos, bars)
     # Add title and axis names
-    plt.title('Accuracy for each K-Value')
-    plt.xlabel('K')
+    plt.title('Accuracy for each K-Value (KNN)')
+    plt.xlabel('K-Value')
     plt.ylabel('Accuracy Percentage')
     # Print Total Run Time
     print("Algorithm Run Time: %s seconds " % (time.time() - start_time))
     print("Average cross-validated accuracy: " + str(accuracyForEachK.mean()))
-    #print("KNN scikit Accuracy cross-validated: " + str(accuracyForEachK.mean()*.01))
 
-    # Show graphic
-    plt.show()
+    # Save graphic
+    plt.savefig('KNN_Analysis.png', bbox_inches='tight')
     return bestK
-    # KNN Algorithim scikit
 
 
-
-    #return (accuracyForEachK, highestAccuracyPercentage, bestK)
